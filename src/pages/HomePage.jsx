@@ -21,11 +21,14 @@ function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Benefi - Your Work. Your Money. One Smart Companion.</title>
-        <meta 
-          name="description" 
-          content="Benefi is a next-generation HR and financial wellness platform powered by GenAI, designed specifically for Filipino employees. Where work meets financial confidence." 
-        />
+        <title>BeneFi - Your Work. Your Money. One Smart Companion.</title>
+        <meta name="description" content="BeneFi is a next-generation HR and financial wellness platform powered by AI, designed for Filipino employees. Where work meets financial confidence." />
+        <meta property="og:title" content="BeneFi - Your Work. Your Money. One Smart Companion." />
+        <meta property="og:description" content="Next-generation HR and financial wellness platform powered by AI for Filipino employees. Join the waitlist for early access." />
+        <meta property="og:url" content="https://benefi.ph" />
+        <meta property="og:image" content="https://benefi.ph/logo.png" />
+        <meta name="twitter:title" content="BeneFi - Your Work. Your Money. One Smart Companion." />
+        <meta name="twitter:description" content="Next-generation HR and financial wellness platform for Filipino employees." />
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">

@@ -46,15 +46,19 @@ function OurPurposeSection() {
             </div>
           </motion.div>
 
-          {/* Image Side (decorative space) */}
+          {/* Image Side */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:block"
           >
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-              <div className="aspect-square bg-gradient-to-br from-[#E8B86B]/20 to-[#2D9B9B]/20 rounded-xl" />
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+              <img
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80"
+                alt="Filipino professional employees collaborating"
+                className="w-full h-full object-cover aspect-square"
+              />
             </div>
           </motion.div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, PlayCircle } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 function HeroSection() {
   const scrollToSection = (id) => {
@@ -67,15 +67,6 @@ function HeroSection() {
             <ChevronRight className="ml-2 h-5 w-5" />
           </Button>
           
-          <Button
-            size="lg"
-            variant="outline"
-            className="w-full sm:w-auto border-white text-white hover:bg-white/10 font-semibold px-8 py-7 text-lg rounded-full backdrop-blur-sm transition-all duration-300"
-            onClick={() => {}} // Placeholder action
-          >
-            Watch Demo
-            <PlayCircle className="ml-2 h-5 w-5" />
-          </Button>
         </motion.div>
       </div>
 

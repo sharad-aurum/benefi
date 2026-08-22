@@ -52,11 +52,8 @@ function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link 
-          to="/" 
-          className="text-2xl font-bold text-white tracking-tight flex items-center gap-2"
-        >
-          Benefi
+        <Link to="/" className="flex items-center">
+          <img src="/logo.png" alt="BeneFi" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
