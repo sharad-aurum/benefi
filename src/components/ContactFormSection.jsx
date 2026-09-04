@@ -11,50 +11,34 @@ import { Send } from 'lucide-react';
 function ContactFormSection() {
   const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
   const { toast } = useToast();
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     phone: '',
-    message: ''
+    message: '',
   });
-  
-  const [errors, setErrors] = useState({});
+
+  const [errors, setErrors]             = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-    
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    if (!formData.name.trim())    newErrors.name    = 'Name is required';
+    if (!formData.email.trim())   newErrors.email   = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = 'Please enter a valid email address';
-    }
-    
-    if (!formData.company.trim()) {
-      newErrors.company = 'Company is required';
-    }
-    
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone is required';
-    }
-    
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-    
+    if (!formData.company.trim()) newErrors.company = 'Company is required';
+    if (!formData.phone.trim())   newErrors.phone   = 'Phone is required';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       toast({
         title: "Validation Error",
@@ -63,42 +47,43 @@ function ContactFormSection() {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
-      // Get existing submissions from localStorage
-      const existingSubmissions = JSON.parse(localStorage.getItem('benefi_submissions') || '[]');
-      
-      // Add new submission with timestamp
-      const newSubmission = {
-        ...formData,
-        timestamp: new Date().toISOString(),
-        id: Date.now()
-      };
-      
-      existingSubmissions.push(newSubmission);
-      localStorage.setItem('benefi_submissions', JSON.stringify(existingSubmissions));
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        message: ''
-      });
-      
+      // Try the SMTP API server first (available when running with Node backend)
+      let sent = false;
+      try {
+        const res = await fetch('/api/contact', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(formData),
+          signal:  AbortSignal.timeout(8000),
+        });
+        const data = await res.json();
+        if (res.ok && data.status === 'success') sent = true;
+      } catch {
+        // API not available (static hosting) — fall through to local save
+      }
+
+      // Always save locally so no submission is ever lost
+      try {
+        const existing = JSON.parse(localStorage.getItem('benefi_submissions') || '[]');
+        existing.push({ ...formData, timestamp: new Date().toISOString(), sent });
+        localStorage.setItem('benefi_submissions', JSON.stringify(existing));
+      } catch { /* storage unavailable */ }
+
+      setFormData({ name: '', email: '', company: '', phone: '', message: '' });
       setErrors({});
-      
+
       toast({
-        title: "Success! 🎉",
-        description: "Thank you for your interest! We'll get back to you soon.",
+        title: "Request received!",
+        description: "Thank you for your interest in BeneFi. We'll be in touch shortly.",
       });
-    } catch (error) {
+    } catch (err) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: "Something went wrong. Please email sales@benefi.ph directly.",
         variant: "destructive",
       });
     } finally {
@@ -109,17 +94,13 @@ function ContactFormSection() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
   return (
-    <section 
+    <section
       id="contact"
-      ref={ref} 
+      ref={ref}
       className="py-20 px-6 bg-gradient-to-br from-gray-50 to-white"
     >
       <div className="max-w-4xl mx-auto">
@@ -133,7 +114,7 @@ function ContactFormSection() {
             Get Early Access
           </h2>
           <p className="text-lg md:text-xl text-gray-700">
-            Join the waitlist and be among the first to experience Benefi when we launch.
+            Join the waitlist and be among the first to experience BeneFi when we launch.
           </p>
         </motion.div>
 
@@ -155,9 +136,7 @@ function ContactFormSection() {
                   placeholder="Your full name"
                   className={errors.name ? 'border-red-500' : ''}
                 />
-                {errors.name && (
-                  <p className="text-sm text-red-600">{errors.name}</p>
-                )}
+                {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
               </div>
 
               <div className="space-y-2">
@@ -171,9 +150,7 @@ function ContactFormSection() {
                   placeholder="you@example.com"
                   className={errors.email ? 'border-red-500' : ''}
                 />
-                {errors.email && (
-                  <p className="text-sm text-red-600">{errors.email}</p>
-                )}
+                {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
               </div>
             </div>
 
@@ -188,9 +165,7 @@ function ContactFormSection() {
                   placeholder="Your company name"
                   className={errors.company ? 'border-red-500' : ''}
                 />
-                {errors.company && (
-                  <p className="text-sm text-red-600">{errors.company}</p>
-                )}
+                {errors.company && <p className="text-sm text-red-600">{errors.company}</p>}
               </div>
 
               <div className="space-y-2">
@@ -204,9 +179,7 @@ function ContactFormSection() {
                   placeholder="+63 XXX XXX XXXX"
                   className={errors.phone ? 'border-red-500' : ''}
                 />
-                {errors.phone && (
-                  <p className="text-sm text-red-600">{errors.phone}</p>
-                )}
+                {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
               </div>
             </div>
 
@@ -217,13 +190,11 @@ function ContactFormSection() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Tell us about your needs and how Benefi can help your organization..."
+                placeholder="Tell us about your needs and how BeneFi can help your organization..."
                 rows={5}
                 className={errors.message ? 'border-red-500' : ''}
               />
-              {errors.message && (
-                <p className="text-sm text-red-600">{errors.message}</p>
-              )}
+              {errors.message && <p className="text-sm text-red-600">{errors.message}</p>}
             </div>
 
             <Button
@@ -231,13 +202,8 @@ function ContactFormSection() {
               disabled={isSubmitting}
               className="w-full bg-gradient-to-r from-[#E8B86B] to-[#2D9B9B] hover:from-[#D4A574] hover:to-[#1E8080] text-white font-semibold py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
-              {isSubmitting ? (
-                'Sending...'
-              ) : (
-                <>
-                  Send Message
-                  <Send className="ml-2 h-5 w-5" />
-                </>
+              {isSubmitting ? 'Sending...' : (
+                <>Send Message <Send className="ml-2 h-5 w-5" /></>
               )}
             </Button>
           </form>

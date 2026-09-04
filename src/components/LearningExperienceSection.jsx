@@ -25,7 +25,7 @@ function LearningExperienceSection() {
                 Learning that feels like living
               </h3>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Financial education shouldn't feel like homework. Benefi makes learning about 
+                Financial education shouldn't feel like homework. BeneFi makes learning about 
                 money natural and engaging — through conversations, real-life scenarios, and 
                 personalized insights that stick. Build confidence one small step at a time.
               </p>
@@ -47,7 +47,7 @@ function LearningExperienceSection() {
                 A new way to experience HR
               </h3>
               <p className="text-lg text-gray-700 leading-relaxed">
-                HR tasks don't have to be tedious. Benefi transforms everyday processes — 
+                HR tasks don't have to be tedious. BeneFi transforms everyday processes — 
                 from leave requests to payroll queries — into seamless, intuitive moments. 
                 Get what you need, when you need it, without the hassle.
               </p>

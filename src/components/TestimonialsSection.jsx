@@ -8,7 +8,7 @@ function TestimonialsSection() {
 
   const testimonials = [
     {
-      quote: "Benefi completely changed how I look at my salary. I used to just wait for payday, but now I'm actually planning my future.",
+      quote: "BeneFi completely changed how I look at my salary. I used to just wait for payday, but now I'm actually planning my future.",
       author: "Maria Santos",
       role: "Graphic Designer",
       company: "Creative Studio MNL",
@@ -24,7 +24,7 @@ function TestimonialsSection() {
       initials: "JR"
     },
     {
-      quote: "Finally, an HR app that gives back to employees. I've saved more in the last 3 months with Benefi than I did all last year.",
+      quote: "Finally, an HR app that gives back to employees. I've saved more in the last 3 months with BeneFi than I did all last year.",
       author: "Sarah Dizon",
       role: "Customer Support Lead",
       company: "Global Connect",

@@ -3,14 +3,14 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { motion } from 'framer-motion';
 import { Users, GraduationCap, Shield } from 'lucide-react';
 
-function WhatIsBenefiSection() {
+function WhatIsBeneFiSection() {
   const [ref, isVisible] = useScrollAnimation({ threshold: 0.1 });
 
   const features = [
     {
       icon: Users,
       title: 'Employee Lifecycle Management',
-      description: 'From onboarding to offboarding, Benefi streamlines every HR touchpoint with intelligent automation and personalized guidance.'
+      description: 'From onboarding to offboarding, BeneFi streamlines every HR touchpoint with intelligent automation and personalized guidance.'
     },
     {
       icon: GraduationCap,
@@ -34,7 +34,7 @@ function WhatIsBenefiSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            What is Benefi?
+            What is BeneFi?
           </h2>
           <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
             A next-generation HR and financial wellness platform powered by GenAI, 
@@ -68,4 +68,4 @@ function WhatIsBenefiSection() {
   );
 }
 
-export default WhatIsBenefiSection;
+export default WhatIsBeneFiSection;

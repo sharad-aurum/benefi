@@ -44,7 +44,7 @@ function LoginPage() {
         localStorage.setItem('isAuthenticated', 'true');
         toast({
           title: "Welcome back! 👋",
-          description: "Successfully logged in to Benefi.",
+          description: "Successfully logged in to BeneFi.",
         });
         navigate('/'); // Redirect to home (dashboard placeholder)
       } else {
@@ -56,8 +56,8 @@ function LoginPage() {
   return (
     <>
       <Helmet>
-        <title>Login - Benefi</title>
-        <meta name="description" content="Login to your Benefi account" />
+        <title>Login - BeneFi</title>
+        <meta name="description" content="Login to your BeneFi account" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col md:flex-row bg-gray-50">

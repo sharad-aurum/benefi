@@ -25,7 +25,7 @@ function ManifestoSection() {
           
           <p className="text-lg md:text-xl text-gray-800 leading-relaxed max-w-3xl mx-auto">
             For too long, there's been a gap between HR systems and real financial wellness. 
-            Benefi bridges that divide, bringing together the employee experience and financial 
+            BeneFi bridges that divide, bringing together the employee experience and financial 
             empowerment into one intelligent, supportive companion that grows with you.
           </p>
         </motion.div>

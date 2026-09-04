@@ -13,16 +13,16 @@ function FAQSection() {
 
   const faqs = [
     {
-      question: "What is Benefi and how does it work?",
-      answer: "Benefi is an all-in-one HR and financial wellness platform powered by AI. We combine essential HR tasks like leave and payslips with powerful financial tools, helping employees manage their work life and money in one place."
+      question: "What is BeneFi and how does it work?",
+      answer: "BeneFi is an all-in-one HR and financial wellness platform powered by AI. We combine essential HR tasks like leave and payslips with powerful financial tools, helping employees manage their work life and money in one place."
     },
     {
-      question: "Is Benefi secure? How is my data protected?",
+      question: "Is BeneFi secure? How is my data protected?",
       answer: "Absolutely. We use bank-level encryption (AES-256) to protect your personal and financial data. We comply with the Data Privacy Act of 2012 (Republic Act 10173) to ensure your information remains confidential and secure."
     },
     {
-      question: "Can I use Benefi on mobile?",
-      answer: "Yes! Benefi is designed with a mobile-first approach. You can access all features through our responsive web app on any smartphone, tablet, or desktop computer."
+      question: "Can I use BeneFi on mobile?",
+      answer: "Yes! BeneFi is designed with a mobile-first approach. You can access all features through our responsive web app on any smartphone, tablet, or desktop computer."
     },
     {
       question: "How does the AI personalization work?",
@@ -34,11 +34,11 @@ function FAQSection() {
     },
     {
       question: "How do I get started?",
-      answer: "You can sign up for our Free Starter plan today. If your employer partners with Benefi, you'll get access to Premium features automatically through your company email."
+      answer: "You can sign up for our Free Starter plan today. If your employer partners with BeneFi, you'll get access to Premium features automatically through your company email."
     },
     {
-      question: "Can my company implement Benefi?",
-      answer: "Yes! We offer Enterprise solutions for companies of all sizes. Contact our sales team to learn how Benefi can improve employee retention and financial well-being in your organization."
+      question: "Can my company implement BeneFi?",
+      answer: "Yes! We offer Enterprise solutions for companies of all sizes. Contact our sales team to learn how BeneFi can improve employee retention and financial well-being in your organization."
     },
     {
       question: "What happens to my data if I cancel?",

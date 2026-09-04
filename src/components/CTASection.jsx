@@ -28,7 +28,7 @@ function CTASection() {
             Ready to transform your financial wellness?
           </h2>
           <p className="text-xl md:text-2xl text-[#1E3A5F]/80 mb-10 max-w-2xl mx-auto">
-            Join thousands of Filipino employees taking control of their finances with Benefi.
+            Join thousands of Filipino employees taking control of their finances with BeneFi.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

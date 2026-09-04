@@ -15,13 +15,13 @@ function CorePrinciplesSection() {
     {
       emoji: '🎯',
       title: 'Personal by design',
-      description: 'Benefi adapts to your unique life stage, goals, and challenges. What works for you might not work for someone else — and that\'s okay.',
+      description: 'BeneFi adapts to your unique life stage, goals, and challenges. What works for you might not work for someone else — and that\'s okay.',
       gradient: 'from-[#6B5B95] to-[#2D9B9B]'
     },
     {
       emoji: '💬',
       title: 'Conversations over clicks',
-      description: 'Talk to Benefi naturally. No endless forms, no confusing dashboards. Just simple, human conversations that get things done.',
+      description: 'Talk to BeneFi naturally. No endless forms, no confusing dashboards. Just simple, human conversations that get things done.',
       gradient: 'from-[#D4A574] to-[#E8B86B]'
     }
   ];
@@ -39,7 +39,7 @@ function CorePrinciplesSection() {
             Our Core Principles
           </h2>
           <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
-            These values guide everything we build and every interaction you have with Benefi.
+            These values guide everything we build and every interaction you have with BeneFi.
           </p>
         </motion.div>
 

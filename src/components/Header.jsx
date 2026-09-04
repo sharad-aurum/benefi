@@ -38,16 +38,17 @@ function Header() {
     { label: 'Features', id: 'features' },
     { label: 'Pricing', id: 'pricing' },
     { label: 'FAQ', id: 'faq' },
+    { label: 'Team', id: 'team' },
     { label: 'About', id: 'purpose' },
     { label: 'Contact', id: 'contact' },
   ];
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[#1E3A5F]/95 backdrop-blur-md shadow-lg py-3' 
-          : 'bg-transparent py-5'
+        isScrolled
+          ? 'bg-white shadow-md py-3'
+          : 'bg-white py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -62,7 +63,7 @@ function Header() {
             <button
               key={item.label}
               onClick={() => handleNavClick(item.id)}
-              className="text-gray-200 hover:text-white font-medium transition-colors text-sm"
+              className="text-gray-600 hover:text-[#1E3A5F] font-medium transition-colors text-sm"
             >
               {item.label}
             </button>
@@ -72,11 +73,11 @@ function Header() {
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-4">
           <Link to="/login">
-            <Button variant="ghost" className="text-white hover:text-[#E8B86B] hover:bg-white/10">
+            <Button variant="ghost" className="text-gray-600 hover:text-[#1E3A5F] hover:bg-gray-100">
               Login
             </Button>
           </Link>
-          <Button 
+          <Button
             onClick={() => handleNavClick('contact')}
             className="bg-[#2D9B9B] hover:bg-[#247a7a] text-white border-0"
           >
@@ -85,8 +86,8 @@ function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-white p-2"
+        <button
+          className="md:hidden text-gray-600 p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -100,25 +101,25 @@ function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#1E3A5F] border-t border-white/10 overflow-hidden"
+            className="md:hidden bg-white border-t border-gray-100 overflow-hidden shadow-md"
           >
             <div className="flex flex-col p-6 space-y-4">
               {navItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.id)}
-                  className="text-left text-gray-200 hover:text-white font-medium py-2"
+                  className="text-left text-gray-600 hover:text-[#1E3A5F] font-medium py-2"
                 >
                   {item.label}
                 </button>
               ))}
               <div className="pt-4 flex flex-col space-y-3">
                 <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full text-white justify-start pl-0 hover:bg-white/10">
+                  <Button variant="ghost" className="w-full text-gray-600 justify-start pl-0 hover:bg-gray-100">
                     Login
                   </Button>
                 </Link>
-                <Button 
+                <Button
                   onClick={() => handleNavClick('contact')}
                   className="w-full bg-[#2D9B9B] hover:bg-[#247a7a] text-white"
                 >

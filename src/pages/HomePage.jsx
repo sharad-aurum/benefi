@@ -13,6 +13,7 @@ import BuiltForPhilippinesSection from '@/components/BuiltForPhilippinesSection'
 import PricingSection from '@/components/PricingSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
+import TeamSection from '@/components/TeamSection';
 import CTASection from '@/components/CTASection';
 import ContactFormSection from '@/components/ContactFormSection';
 import Footer from '@/components/Footer';
@@ -44,6 +45,7 @@ function HomePage() {
         <BuiltForPhilippinesSection />
         <PricingSection />
         <TestimonialsSection />
+        <TeamSection />
         <FAQSection />
         <CTASection />
         <ContactFormSection />

@@ -39,7 +39,7 @@ function OurPurposeSection() {
                 financial wellness. We believe it doesn't have to be that way.
               </p>
               <p>
-                With Benefi, you get daily support — not just annual reviews. A companion who 
+                With BeneFi, you get daily support — not just annual reviews. A companion who 
                 understands your goals, celebrates your wins, and helps you navigate challenges 
                 with empathy and intelligence.
               </p>

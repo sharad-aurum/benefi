@@ -5,8 +5,7 @@
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>BeneFi - Your Work. Your Money. One Smart Companion.</title>
-		<meta name="description" content="BeneFi is a next-generation HR and financial wellness platform powered by AI, designed specifically for Filipino employees. Where work meets financial confidence." />
-		<meta name="keywords" content="BeneFi, financial wellness Philippines, HR platform Philippines, employee benefits Philippines, Filipino fintech, payroll Philippines, financial literacy Philippines" />
+		<meta name="description" content="BeneFi is an AI-powered HR and financial wellness platform for Filipino employees. Your work. Your money. One smart companion." />
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href="https://benefi.ph" />
 		<!-- Open Graph -->
@@ -22,9 +21,187 @@
 		<meta name="twitter:title" content="BeneFi - Your Work. Your Money. One Smart Companion." />
 		<meta name="twitter:description" content="Next-generation HR and financial wellness platform powered by AI for Filipino employees." />
 		<meta name="twitter:image" content="https://benefi.ph/logo.png" />
+	<!-- JSON-LD Structured Data for SEO / GEO / AEO -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "Organization",
+				"@id": "https://benefi.ph/#organization",
+				"name": "BeneFi",
+				"url": "https://benefi.ph",
+				"logo": "https://benefi.ph/logo.png",
+				"description": "BeneFi is an AI-powered HR and financial wellness platform designed for Filipino employees. It combines HR tools with financial services in one smart companion.",
+				"foundingLocation": "Philippines",
+				"sameAs": [
+					"https://www.linkedin.com/company/benefintech/",
+					"https://www.linkedin.com/in/sharadi/",
+					"https://www.linkedin.com/in/prafull-babar-01543816/"
+				],
+				"contactPoint": {
+					"@type": "ContactPoint",
+					"email": "sales@benefi.ph",
+					"contactType": "sales"
+				},
+				"member": [
+					{
+						"@type": "Person",
+						"name": "Sharad Ingule",
+						"jobTitle": "Co-Founder & CEO",
+						"url": "https://www.linkedin.com/in/sharadi/",
+						"description": "Fintech builder with experience at GoldUno, Pokkt, UNO Bank, BCG, Reliance, SONY, and Network 18."
+					},
+					{
+						"@type": "Person",
+						"name": "Prafull Babar",
+						"jobTitle": "Co-Founder & COO",
+						"url": "https://www.linkedin.com/in/prafull-babar-01543816/",
+						"description": "Experienced operator with background at Nielsen IQ, Unilever, General Mills, STAR, NIVEA, and NIQ."
+					}
+				]
+			},
+			{
+				"@type": "WebSite",
+				"@id": "https://benefi.ph/#website",
+				"url": "https://benefi.ph",
+				"name": "BeneFi",
+				"description": "AI-powered HR and financial wellness platform for Filipino employees.",
+				"publisher": { "@id": "https://benefi.ph/#organization" }
+			},
+			{
+				"@type": "SoftwareApplication",
+				"@id": "https://benefi.ph/#app",
+				"name": "BeneFi",
+				"applicationCategory": "FinanceApplication",
+				"operatingSystem": "Web, iOS, Android",
+				"url": "https://benefi.ph",
+				"description": "BeneFi combines HR management and financial wellness tools — payslips, leave, loans, savings, and AI-driven financial coaching — into one platform for Filipino employees.",
+				"offers": {
+					"@type": "Offer",
+					"price": "0",
+					"priceCurrency": "PHP",
+					"description": "Free Starter plan available. Professional and Enterprise tiers available."
+				},
+				"publisher": { "@id": "https://benefi.ph/#organization" },
+				"areaServed": "PH"
+			},
+			{
+				"@type": "FAQPage",
+				"@id": "https://benefi.ph/#faq",
+				"mainEntity": [
+					{
+						"@type": "Question",
+						"name": "What is BeneFi and how does it work?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "BeneFi is an all-in-one HR and financial wellness platform powered by AI. It combines essential HR tasks like leave and payslips with powerful financial tools, helping Filipino employees manage their work life and money in one place."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Is BeneFi secure? How is my data protected?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "BeneFi uses bank-level AES-256 encryption and complies with the Data Privacy Act of 2012 (Republic Act 10173) to ensure your personal and financial data remains confidential and secure."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "Can I use BeneFi on mobile?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "Yes. BeneFi is designed mobile-first and works on any smartphone, tablet, or desktop through its responsive web app."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "How does BeneFi's AI personalization work?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "BeneFi's AI analyzes your financial patterns, goals, and life stage to provide tailored recommendations — like a dedicated financial advisor that learns from your interactions over time."
+						}
+					},
+					{
+						"@type": "Question",
+						"name": "How do I get early access to BeneFi?",
+						"acceptedAnswer": {
+							"@type": "Answer",
+							"text": "You can join the BeneFi waitlist by filling out the early access form on benefi.ph. We will notify you as soon as we launch."
+						}
+					}
+				]
+			}
+		]
+	}
+	</script>
 	</head>
 	<body>
 		<div id="root"></div>
 		<script type="module" src="/src/main.jsx"></script>
+
+		<!-- Crawlable fallback content for non-JS bots (Google, GPTBot, ClaudeBot, etc.) -->
+		<noscript>
+			<header>
+				<nav>
+					<a href="/">BeneFi</a>
+					<a href="/for-employers">For Employers</a>
+					<a href="/for-employees">For Employees</a>
+					<a href="/security">Security</a>
+				</nav>
+			</header>
+			<main>
+				<h1>BeneFi — Your Work. Your Money. One Smart Companion.</h1>
+				<p>BeneFi is an AI-powered HR and financial wellness platform designed for Filipino employees. We combine essential HR tools — payslips, leave management, onboarding — with financial services including loans, savings, and AI-driven coaching, all in one place.</p>
+
+				<h2>What is BeneFi?</h2>
+				<p>BeneFi helps Filipino employees manage their work life and money together. It brings together HR management and financial wellness into a single, intelligent companion powered by AI.</p>
+
+				<h2>Features</h2>
+				<ul>
+					<li>AI-powered financial coaching tailored to your goals and life stage</li>
+					<li>HR tools: leave management, payslips, onboarding, and performance tracking</li>
+					<li>Access to loans, savings, and insurance from trusted Philippine financial institutions</li>
+					<li>Bank-level AES-256 encryption and compliance with the Data Privacy Act of 2012</li>
+					<li>Mobile-first design — works on any device</li>
+				</ul>
+
+				<h2>Why BeneFi?</h2>
+				<p>Filipino employees deserve more than an annual review and a basic payslip app. BeneFi provides daily financial support, helping people at every stage of their career build real financial confidence.</p>
+
+				<h2>Meet the Team</h2>
+				<p><strong>Sharad Ingule</strong> — Co-Founder &amp; CEO. Fintech builder with experience at GoldUno, Pokkt, UNO Bank, BCG, Reliance, SONY, and Network 18. <a href="https://www.linkedin.com/in/sharadi/">LinkedIn</a></p>
+				<p><strong>Prafull Babar</strong> — Co-Founder &amp; COO. Experienced operator from Nielsen IQ, Unilever, General Mills, STAR, NIVEA, and NIQ. <a href="https://www.linkedin.com/in/prafull-babar-01543816/">LinkedIn</a></p>
+
+				<h2>Frequently Asked Questions</h2>
+				<dl>
+					<dt>What is BeneFi and how does it work?</dt>
+					<dd>BeneFi is an all-in-one HR and financial wellness platform powered by AI. It combines leave management and payslips with financial tools, helping Filipino employees manage work and money in one place.</dd>
+
+					<dt>Is BeneFi secure?</dt>
+					<dd>Yes. BeneFi uses bank-level AES-256 encryption and complies with the Data Privacy Act of 2012 (Republic Act 10173).</dd>
+
+					<dt>Can I use BeneFi on mobile?</dt>
+					<dd>Yes. BeneFi is mobile-first and works on any smartphone, tablet, or desktop.</dd>
+
+					<dt>How do I get early access to BeneFi?</dt>
+					<dd>Fill in the early access form at benefi.ph or email us at sales@benefi.ph.</dd>
+
+					<dt>How is BeneFi different from a payroll app?</dt>
+					<dd>BeneFi goes beyond payroll — it adds AI financial coaching, access to financial products, and a full HR experience in one platform built specifically for Filipino employees.</dd>
+				</dl>
+
+				<h2>Get Early Access</h2>
+				<p>Join the BeneFi waitlist and be among the first to experience the platform when we launch. Contact us at <a href="mailto:sales@benefi.ph">sales@benefi.ph</a>.</p>
+			</main>
+			<footer>
+				<p>&copy; 2026 BeneFi. AI-powered HR and financial wellness for Filipino employees.</p>
+				<nav>
+					<a href="/privacy-policy">Privacy Policy</a>
+					<a href="/terms-of-service">Terms of Service</a>
+					<a href="/security">Security</a>
+				</nav>
+			</footer>
+		</noscript>
 	</body>
 </html>

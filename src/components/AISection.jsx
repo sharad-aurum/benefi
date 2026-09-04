@@ -17,7 +17,7 @@ function AISection() {
     {
       icon: LineChart,
       title: 'Predictive Financial Insights',
-      description: 'Benefi analyzes your spending patterns to predict future needs and help you prepare.',
+      description: 'BeneFi analyzes your spending patterns to predict future needs and help you prepare.',
       gradient: 'from-[#1E3A5F] to-[#2D9B9B]',
       colSpan: 'md:col-span-1 lg:col-span-1'
     },

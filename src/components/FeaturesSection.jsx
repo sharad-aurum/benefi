@@ -33,7 +33,7 @@ function FeaturesSection() {
     },
     {
       icon: Gift,
-      title: 'Benefits Access',
+      title: 'BeneFits Access',
       description: 'Discover and access employee benefits tailored to your needs.'
     },
     {
