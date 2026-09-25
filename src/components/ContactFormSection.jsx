@@ -25,13 +25,33 @@ function ContactFormSection() {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim())    newErrors.name    = 'Name is required';
-    if (!formData.email.trim())   newErrors.email   = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+
+    if (!formData.name.trim())
+      newErrors.name = 'Name is required';
+    else if (formData.name.trim().length < 2)
+      newErrors.name = 'Please enter your full name';
+
+    if (!formData.email.trim())
+      newErrors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()))
       newErrors.email = 'Please enter a valid email address';
-    if (!formData.company.trim()) newErrors.company = 'Company is required';
-    if (!formData.phone.trim())   newErrors.phone   = 'Phone is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
+
+    if (!formData.company.trim())
+      newErrors.company = 'Company name is required';
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else {
+      const digits = formData.phone.replace(/\D/g, '');
+      if (digits.length < 7)
+        newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    if (!formData.message.trim())
+      newErrors.message = 'Please tell us about your needs';
+    else if (formData.message.trim().length < 10)
+      newErrors.message = 'Message is too short — please provide a bit more detail';
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -41,9 +61,9 @@ function ContactFormSection() {
 
     if (!validateForm()) {
       toast({
-        title: "Validation Error",
-        description: "Please fill in all required fields correctly.",
-        variant: "destructive",
+        title: 'Please fix the errors below',
+        description: 'All fields marked with * are required.',
+        variant: 'destructive',
       });
       return;
     }
@@ -51,41 +71,35 @@ function ContactFormSection() {
     setIsSubmitting(true);
 
     try {
-      // Try the SMTP API server first (available when running with Node backend)
-      let sent = false;
-      try {
-        const API_BASE = import.meta.env.VITE_API_URL || '';
-        const res = await fetch(`${API_BASE}/api/contact`, {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify(formData),
-          signal:  AbortSignal.timeout(8000),
-        });
-        const data = await res.json();
-        if (res.ok && data.status === 'success') sent = true;
-      } catch {
-        // API not available (static hosting) — fall through to local save
-      }
+      const API_BASE = import.meta.env.VITE_API_URL || 'https://sales-app.benefi.ph';
+      const res = await fetch(`${API_BASE}/api/public/enquiry`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(formData),
+        signal:  AbortSignal.timeout(10000),
+      });
 
-      // Always save locally so no submission is ever lost
-      try {
-        const existing = JSON.parse(localStorage.getItem('benefi_submissions') || '[]');
-        existing.push({ ...formData, timestamp: new Date().toISOString(), sent });
-        localStorage.setItem('benefi_submissions', JSON.stringify(existing));
-      } catch { /* storage unavailable */ }
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.message || `Server error (${res.status}). Please try again.`);
+      }
 
       setFormData({ name: '', email: '', company: '', phone: '', message: '' });
       setErrors({});
 
       toast({
-        title: "Request received!",
+        title: 'Request received!',
         description: "Thank you for your interest in BeneFi. We'll be in touch shortly.",
       });
     } catch (err) {
+      const isNetwork = err.name === 'TimeoutError' || err.name === 'TypeError';
       toast({
-        title: "Error",
-        description: "Something went wrong. Please email sales@benefi.ph directly.",
-        variant: "destructive",
+        title: 'Submission failed',
+        description: isNetwork
+          ? 'Connection error. Please check your internet and try again, or email us at sales@benefi.ph.'
+          : (err.message || 'Something went wrong. Please email sales@benefi.ph directly.'),
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
@@ -125,31 +139,31 @@ function ContactFormSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-white rounded-2xl shadow-xl p-8 md:p-12"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Name *</Label>
+                <Label htmlFor="name">Full Name *</Label>
                 <Input
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your full name"
-                  className={errors.name ? 'border-red-500' : ''}
+                  className={errors.name ? 'border-red-500 focus-visible:ring-red-500' : ''}
                 />
                 {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email *</Label>
+                <Label htmlFor="email">Work Email *</Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="you@example.com"
-                  className={errors.email ? 'border-red-500' : ''}
+                  placeholder="you@company.com"
+                  className={errors.email ? 'border-red-500 focus-visible:ring-red-500' : ''}
                 />
                 {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
               </div>
@@ -157,43 +171,43 @@ function ContactFormSection() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="company">Company *</Label>
+                <Label htmlFor="company">Company Name *</Label>
                 <Input
                   id="company"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="Your company name"
-                  className={errors.company ? 'border-red-500' : ''}
+                  className={errors.company ? 'border-red-500 focus-visible:ring-red-500' : ''}
                 />
                 {errors.company && <p className="text-sm text-red-600">{errors.company}</p>}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone *</Label>
+                <Label htmlFor="phone">Phone Number *</Label>
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+63 XXX XXX XXXX"
-                  className={errors.phone ? 'border-red-500' : ''}
+                  placeholder="+63 9XX XXX XXXX"
+                  className={errors.phone ? 'border-red-500 focus-visible:ring-red-500' : ''}
                 />
                 {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="message">Message *</Label>
+              <Label htmlFor="message">Tell us about your needs *</Label>
               <Textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Tell us about your needs and how BeneFi can help your organization..."
+                placeholder="How many employees does your company have? What benefits challenges are you trying to solve?"
                 rows={5}
-                className={errors.message ? 'border-red-500' : ''}
+                className={errors.message ? 'border-red-500 focus-visible:ring-red-500' : ''}
               />
               {errors.message && <p className="text-sm text-red-600">{errors.message}</p>}
             </div>
@@ -204,9 +218,13 @@ function ContactFormSection() {
               className="w-full bg-gradient-to-r from-[#E8B86B] to-[#2D9B9B] hover:from-[#D4A574] hover:to-[#1E8080] text-white font-semibold py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               {isSubmitting ? 'Sending...' : (
-                <>Send Message <Send className="ml-2 h-5 w-5" /></>
+                <>Request Early Access <Send className="ml-2 h-5 w-5" /></>
               )}
             </Button>
+
+            <p className="text-center text-sm text-gray-400">
+              By submitting, you agree to be contacted by the BeneFi team.
+            </p>
           </form>
         </motion.div>
       </div>
